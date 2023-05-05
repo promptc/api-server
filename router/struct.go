@@ -9,15 +9,15 @@ import (
 )
 
 type Provider struct {
-	Scheduler scheduler.Scheduler
-	PromptSet pt.PromptSet
+	CliProvider *scheduler.Scheduler
+	PromptSet   pt.PromptSet
 }
 
-func NewProvider(scheduler scheduler.Scheduler, paths []string) *Provider {
+func NewProvider(scheduler *scheduler.Scheduler, paths []string) *Provider {
 	scheduler.StartDaemon()
 	return &Provider{
-		Scheduler: scheduler,
-		PromptSet: pt.NewSet(paths),
+		CliProvider: scheduler,
+		PromptSet:   pt.NewSet(paths),
 	}
 }
 
@@ -26,7 +26,7 @@ func (p *Provider) AbilityHandler(c *gin.Context) {
 	if err != nil {
 		return
 	}
-	rst, err := gpt.FeedPrompt(p.Scheduler, ptc, req.Input)
+	rst, err := gpt.FeedPrompt(p.CliProvider.GetClient(), ptc, req.Input)
 	if err != nil {
 		c.String(500, "GPT Error")
 		return

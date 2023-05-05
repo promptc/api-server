@@ -19,7 +19,7 @@ func (p *Provider) getAbility(c *gin.Context) *prompt.PromptC {
 }
 
 func (p *Provider) streamHandler(c *gin.Context, pt *prompt.PromptC, varMap map[string]string) {
-	stream, err := gpt.StreamPrompt(p.Scheduler, pt, varMap)
+	stream, err := gpt.StreamPrompt(p.CliProvider.GetClient(), pt, varMap)
 	if err != nil {
 		c.String(500, "GPT Error")
 		return
