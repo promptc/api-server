@@ -4,12 +4,20 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/promptc/api-server/gpt"
 	"github.com/promptc/api-server/pt"
+	scheduler "github.com/promptc/openai-scheduler"
 	"github.com/promptc/promptc-go/variable/interfaces"
 )
 
 type Provider struct {
-	GptSet    gpt.GptSet
+	Scheduler scheduler.Scheduler
 	PromptSet pt.PromptSet
+}
+
+func NewProvider(scheduler scheduler.Scheduler, paths []string) *Provider {
+	return &Provider{
+		Scheduler: scheduler,
+		PromptSet: pt.NewSet(paths),
+	}
 }
 
 func (p *Provider) AbilityHandler(c *gin.Context) {
@@ -17,7 +25,7 @@ func (p *Provider) AbilityHandler(c *gin.Context) {
 	if err != nil {
 		return
 	}
-	rst, err := gpt.FeedPrompt(p.GptSet, ptc, req.Input)
+	rst, err := gpt.FeedPrompt(p.Scheduler, ptc, req.Input)
 	if err != nil {
 		c.String(500, "GPT Error")
 		return

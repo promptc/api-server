@@ -3,13 +3,14 @@ package gpt
 import (
 	"context"
 	"fmt"
+	scheduler "github.com/promptc/openai-scheduler"
 	"github.com/promptc/promptc-go/prompt"
 	"github.com/sashabaranov/go-openai"
 )
 
-func FeedPrompt(gs GptSet, pt *prompt.PromptC, varMap map[string]string) (string, error) {
+func FeedPrompt(gs scheduler.Scheduler, pt *prompt.PromptC, varMap map[string]string) (string, error) {
 	fmt.Println("Start Request:", varMap)
-	cli := gs.GetGPT()
+	cli := gs.GetClient()
 	compiled := pt.Compile(varMap)
 	req := openai.ChatCompletionRequest{
 		Model:    pt.GetConf().Model,
@@ -22,9 +23,9 @@ func FeedPrompt(gs GptSet, pt *prompt.PromptC, varMap map[string]string) (string
 	return resp.Choices[0].Message.Content, nil
 }
 
-func StreamPrompt(gs GptSet, pt *prompt.PromptC, varMap map[string]string) (*openai.ChatCompletionStream, error) {
+func StreamPrompt(gs scheduler.Scheduler, pt *prompt.PromptC, varMap map[string]string) (*openai.ChatCompletionStream, error) {
 	fmt.Println("Start Request:", varMap)
-	cli := gs.GetGPT()
+	cli := gs.GetClient()
 	compiled := pt.Compile(varMap)
 	req := openai.ChatCompletionRequest{
 		Model:    pt.GetConf().Model,

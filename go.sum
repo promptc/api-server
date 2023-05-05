@@ -38,6 +38,8 @@ github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjY
 github.com/pelletier/go-toml/v2 v2.0.6 h1:nrzqCb7j9cDFj2coyLNLaZuJTLjWjlaz6nvTvIwycIU=
 github.com/pelletier/go-toml/v2 v2.0.6/go.mod h1:eumQOmlWiOPt5WriQQqoM5y18pDHwha2N+QD+EUNTek=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/promptc/openai-scheduler v0.0.1 h1:/G7aY030IYdvEn+dgxCeOjA6+GdRCXurX9iJTZvHtjg=
+github.com/promptc/openai-scheduler v0.0.1/go.mod h1:nE87VVxeRiSe2NBhvHG6oEFL4E9OJeHtDA3eI7UOZ2Y=
 github.com/promptc/promptc-go v0.1.0 h1:oxaluNuH7SjWW9n/C8pR3FM4XrFPWes0pfLktZDqBlI=
 github.com/promptc/promptc-go v0.1.0/go.mod h1:37Q7j8Vx/pCZVkJIgG7hgFbxIP3xdL1h02VGHJi11/4=
 github.com/sashabaranov/go-openai v1.9.3 h1:uNak3Rn5pPsKRs9bdT7RqRZEyej/zdZOEI2/8wvrFtM=
