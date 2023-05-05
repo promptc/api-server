@@ -1,5 +1,5 @@
 {
-  "listenAddr": ":8080",
+  "listenAddr": "127.0.0.1:8080",
   "tokens": [
     "SECRET_TOKEN"
   ]

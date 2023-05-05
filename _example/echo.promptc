@@ -6,6 +6,6 @@ prompts: [
   Please echo the user input.
   ''',
   '''role: user
-  {input}
+  {echoStr}
   '''
 ]

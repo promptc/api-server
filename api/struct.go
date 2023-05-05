@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/promptc/api-server/gpt"
@@ -85,5 +86,24 @@ func (p *Provider) AbilityVarHandler(c *gin.Context) {
 	for _, v := range vars {
 		constraints[v.Name()] = v.Constraint()
 	}
-	c.JSON(200, constraints)
+	jStr := jsonStr(constraints)
+
+	var inputVarMap map[string]map[string]any
+	_ = json.Unmarshal([]byte(jStr), &inputVarMap)
+	for k, v := range inputVarMap {
+		_var := vars[k]
+		if v == nil {
+			val := make(map[string]any)
+			val["type"] = _var.Type()
+			inputVarMap[k] = val
+			continue
+		}
+		v["type"] = _var.Type()
+	}
+	c.JSON(200, inputVarMap)
+}
+
+func jsonStr(v any) string {
+	bs, _ := json.Marshal(v)
+	return string(bs)
 }
