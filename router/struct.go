@@ -14,6 +14,7 @@ type Provider struct {
 }
 
 func NewProvider(scheduler scheduler.Scheduler, paths []string) *Provider {
+	scheduler.StartDaemon()
 	return &Provider{
 		Scheduler: scheduler,
 		PromptSet: pt.NewSet(paths),
