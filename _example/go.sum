@@ -46,8 +46,8 @@ github.com/pelletier/go-toml/v2 v2.0.6 h1:nrzqCb7j9cDFj2coyLNLaZuJTLjWjlaz6nvTvI
 github.com/pelletier/go-toml/v2 v2.0.6/go.mod h1:eumQOmlWiOPt5WriQQqoM5y18pDHwha2N+QD+EUNTek=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/promptc/api-server v0.0.2 h1:q+V2fdjJ8jT1XzPZWyd8f/FxqkhQ3pjMqP1GVAVnmyQ=
-github.com/promptc/api-server v0.0.2/go.mod h1:SjO8yN+ZvS3HA8+ldI6iDvlpxeDuZ7Ql+OOASy3ZTiI=
+github.com/promptc/api-server v0.0.3 h1:GXB/0v4PaxmA5LzVId5m/wQdHUHxSiYm07F/crPRDd4=
+github.com/promptc/api-server v0.0.3/go.mod h1:SjO8yN+ZvS3HA8+ldI6iDvlpxeDuZ7Ql+OOASy3ZTiI=
 github.com/promptc/openai-scheduler v0.0.1 h1:/G7aY030IYdvEn+dgxCeOjA6+GdRCXurX9iJTZvHtjg=
 github.com/promptc/openai-scheduler v0.0.1/go.mod h1:nE87VVxeRiSe2NBhvHG6oEFL4E9OJeHtDA3eI7UOZ2Y=
 github.com/promptc/promptc-go v0.1.0 h1:oxaluNuH7SjWW9n/C8pR3FM4XrFPWes0pfLktZDqBlI=

@@ -1,6 +1,8 @@
 project: echo
 author: KevinZonda
 
+echoStr: string {maxLen: 100}
+
 prompts: [
   '''role: system
   Please echo the user input.
