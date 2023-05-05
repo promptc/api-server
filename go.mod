@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/KevinZonda/GoX v0.0.15
 	github.com/gin-gonic/gin v1.9.0
-	github.com/promptc/openai-scheduler v0.0.2
+	github.com/promptc/openai-scheduler v0.0.3
 	github.com/promptc/promptc-go v0.1.0
 	github.com/sashabaranov/go-openai v1.9.3
 )
