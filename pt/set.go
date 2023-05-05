@@ -1,7 +1,6 @@
 package pt
 
 import (
-	"github.com/KevinZonda/GoX/pkg/iox"
 	"github.com/promptc/promptc-go/prompt"
 )
 
@@ -10,11 +9,7 @@ type PromptSet []*prompt.PromptC
 func NewSet(paths []string) PromptSet {
 	var set []*prompt.PromptC
 	for _, path := range paths {
-		txt, err := iox.ReadAllText(path)
-		if err != nil {
-			panic(err)
-		}
-		pt := prompt.ParsePromptC(txt)
+		pt := LoadPrompt(path)
 		set = append(set, pt)
 	}
 	return set
