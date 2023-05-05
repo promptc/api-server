@@ -1,15 +1,18 @@
 package router
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/promptc/api-server/gpt"
 	"github.com/promptc/api-server/pt"
 	scheduler "github.com/promptc/openai-scheduler"
+	"github.com/promptc/promptc-go/prompt"
 	"github.com/promptc/promptc-go/variable/interfaces"
+	"io"
 )
 
 type Provider struct {
-	CliProvider *scheduler.Scheduler
+	CliProvider OpenAIClientProvider
 	PromptSet   pt.PromptSet
 }
 
@@ -40,6 +43,36 @@ func (p *Provider) AbilityStreamHandler(c *gin.Context) {
 		return
 	}
 	p.streamHandler(c, ptc, req.Input)
+}
+
+func (p *Provider) streamHandler(c *gin.Context, pt *prompt.PromptC, varMap map[string]string) {
+	stream, err := gpt.StreamPrompt(p.CliProvider.GetClient(), pt, varMap)
+	if err != nil {
+		c.String(500, "GPT Error")
+		return
+	}
+	if stream == nil {
+		c.String(500, "GPT Not Available")
+		return
+	}
+	c.Stream(func(w io.Writer) bool {
+		r, _err := stream.Recv()
+		if _err != nil {
+			if errors.Is(_err, io.EOF) {
+				c.Writer.WriteHeader(200)
+				return false
+			}
+			c.Writer.WriteHeader(500)
+			w.Write([]byte("Something Happened!"))
+			return false
+		}
+		content := r.Choices[0].Delta.Content
+		if content == "" {
+			return true
+		}
+		w.Write([]byte(content))
+		return true
+	})
 }
 
 func (p *Provider) AbilityVarHandler(c *gin.Context) {
