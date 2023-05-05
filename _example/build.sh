@@ -1,0 +1,1 @@
+go build -v -o "./out/main" -ldflags "-s -w" ./*.go

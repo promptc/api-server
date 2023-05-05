@@ -5,6 +5,7 @@ import (
 	"github.com/KevinZonda/GoX/pkg/iox"
 	"github.com/gin-gonic/gin"
 	"github.com/promptc/api-server/api"
+	"github.com/promptc/api-server/cast"
 	scheduler "github.com/promptc/openai-scheduler"
 )
 
@@ -19,10 +20,13 @@ func main() {
 
 	// Init Prompt API Provider
 	openaiScheduler := scheduler.NewScheduler(cfg.Tokens)
-	apiProvider := api.NewProvider(openaiScheduler, []string{
-		"echo.promptc",
-		"hello.promptc",
-	})
+	apiProvider := api.NewProvider(
+		cast.SchedulerToOpenAIProvider(openaiScheduler),
+		[]string{
+			"echo.promptc",
+			"hello.promptc",
+		},
+	)
 
 	// Init Gin HTTP Server
 	engine := gin.New()
