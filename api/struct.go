@@ -1,9 +1,11 @@
-package router
+package api
 
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
+	"github.com/promptc/api-server/cast"
 	"github.com/promptc/api-server/gpt"
+	apiInterface "github.com/promptc/api-server/interfaces"
 	"github.com/promptc/api-server/pt"
 	scheduler "github.com/promptc/openai-scheduler"
 	"github.com/promptc/promptc-go/prompt"
@@ -12,14 +14,14 @@ import (
 )
 
 type Provider struct {
-	CliProvider OpenAIClientProvider
+	CliProvider apiInterface.OpenAIClientProvider
 	PromptSet   pt.PromptSet
 }
 
 func NewProvider(scheduler *scheduler.Scheduler, paths []string) *Provider {
 	scheduler.StartDaemon()
 	return &Provider{
-		CliProvider: scheduler,
+		CliProvider: cast.SchedulerToOpenAIProvider(scheduler),
 		PromptSet:   pt.NewSet(paths),
 	}
 }

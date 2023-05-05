@@ -3,12 +3,12 @@ package gpt
 import (
 	"context"
 	"fmt"
-	"github.com/promptc/api-server/router"
+	"github.com/promptc/api-server/interfaces"
 	"github.com/promptc/promptc-go/prompt"
 	"github.com/sashabaranov/go-openai"
 )
 
-func FeedPrompt(cli router.Completioner, pt *prompt.PromptC, varMap map[string]string) (string, error) {
+func FeedPrompt(cli interfaces.OpenAIClient, pt *prompt.PromptC, varMap map[string]string) (string, error) {
 	fmt.Println("Start Request:", varMap)
 	compiled := pt.Compile(varMap)
 	req := openai.ChatCompletionRequest{
@@ -22,7 +22,7 @@ func FeedPrompt(cli router.Completioner, pt *prompt.PromptC, varMap map[string]s
 	return resp.Choices[0].Message.Content, nil
 }
 
-func StreamPrompt(cli router.Streamer, pt *prompt.PromptC, varMap map[string]string) (*openai.ChatCompletionStream, error) {
+func StreamPrompt(cli interfaces.OpenAIClient, pt *prompt.PromptC, varMap map[string]string) (*openai.ChatCompletionStream, error) {
 	fmt.Println("Start Request:", varMap)
 	compiled := pt.Compile(varMap)
 	req := openai.ChatCompletionRequest{
