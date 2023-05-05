@@ -1,0 +1,11 @@
+project: hi
+author: KevinZonda
+
+prompts: [
+  '''role: system
+  Please print say hi to user
+  ''',
+  '''role: user
+  {input}
+  '''
+]
