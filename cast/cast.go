@@ -6,6 +6,7 @@ import (
 )
 
 func SchedulerToOpenAIProvider(scheduler *scheduler.Scheduler) interfaces.OpenAIClientProvider {
+	scheduler.StartDaemon()
 	return &provider{client: scheduler}
 }
 

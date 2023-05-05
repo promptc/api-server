@@ -3,11 +3,9 @@ package api
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
-	"github.com/promptc/api-server/cast"
 	"github.com/promptc/api-server/gpt"
 	apiInterface "github.com/promptc/api-server/interfaces"
 	"github.com/promptc/api-server/pt"
-	scheduler "github.com/promptc/openai-scheduler"
 	"github.com/promptc/promptc-go/prompt"
 	"github.com/promptc/promptc-go/variable/interfaces"
 	"io"
@@ -18,10 +16,9 @@ type Provider struct {
 	PromptSet   pt.PromptSet
 }
 
-func NewProvider(scheduler *scheduler.Scheduler, paths []string) *Provider {
-	scheduler.StartDaemon()
+func NewProvider(prov apiInterface.OpenAIClientProvider, paths []string) *Provider {
 	return &Provider{
-		CliProvider: cast.SchedulerToOpenAIProvider(scheduler),
+		CliProvider: prov,
 		PromptSet:   pt.NewSet(paths),
 	}
 }
