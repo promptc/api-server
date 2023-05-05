@@ -42,14 +42,15 @@ func main() {
 	apiProvider.AppendRouter(group)
 
 	// Start HTTP Server
-	err := engine.Run(":8080")
+	err := engine.Run(cfg.ListenAddr)
 	if err != nil {
 		panic(err)
 	}
 }
 
 type cfgModel struct {
-	Tokens []string `json:"tokens"`
+	ListenAddr string   `json:"listenAddr"`
+	Tokens     []string `json:"tokens"`
 }
 
 func e[T any](i T, err error) T {
