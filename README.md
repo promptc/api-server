@@ -6,4 +6,4 @@
 
 ## Example
 
-See [_example](_example) for more details.
+See [example](example/main.go) for more details.
