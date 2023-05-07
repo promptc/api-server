@@ -8,7 +8,6 @@ import (
 	apiInterface "github.com/promptc/api-server/interfaces"
 	"github.com/promptc/api-server/pt"
 	"github.com/promptc/promptc-go/prompt"
-	"github.com/promptc/promptc-go/variable/interfaces"
 	"io"
 )
 
@@ -82,25 +81,14 @@ func (p *Provider) AbilityVarHandler(c *gin.Context) {
 		return
 	}
 	vars := ptc.VarConstraint
-	constraints := make(map[string]interfaces.Constraint)
+	resp := make(VarInfoResponse)
 	for _, v := range vars {
-		constraints[v.Name()] = v.Constraint()
-	}
-	jStr := jsonStr(constraints)
-
-	var inputVarMap map[string]map[string]any
-	_ = json.Unmarshal([]byte(jStr), &inputVarMap)
-	for k, v := range inputVarMap {
-		_var := vars[k]
-		if v == nil {
-			val := make(map[string]any)
-			val["type"] = _var.Type()
-			inputVarMap[k] = val
-			continue
+		resp[v.Name()] = VarInfo{
+			Type:       v.Type(),
+			Constraint: v.Constraint(),
 		}
-		v["type"] = _var.Type()
 	}
-	c.JSON(200, inputVarMap)
+	c.JSON(200, resp)
 }
 
 func jsonStr(v any) string {
