@@ -48,8 +48,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/promptc/openai-scheduler v0.0.3 h1:beHrM8+abOiNkl4RDBa4tVFNkPaWchkDgEBv74iQJ0k=
 github.com/promptc/openai-scheduler v0.0.3/go.mod h1:XmzXd6aQiju7AJfwOFkhWB3O+l2ojbs/T1XrXQf+5bE=
-github.com/promptc/promptc-go v0.1.0 h1:oxaluNuH7SjWW9n/C8pR3FM4XrFPWes0pfLktZDqBlI=
-github.com/promptc/promptc-go v0.1.0/go.mod h1:37Q7j8Vx/pCZVkJIgG7hgFbxIP3xdL1h02VGHJi11/4=
+github.com/promptc/promptc-go v0.1.1 h1:VEccN32FnvNjbfkAfp6FODC/LXDz8s6lphXtnGSvWjU=
+github.com/promptc/promptc-go v0.1.1/go.mod h1:37Q7j8Vx/pCZVkJIgG7hgFbxIP3xdL1h02VGHJi11/4=
 github.com/robertkrimen/otto v0.2.1 h1:FVP0PJ0AHIjC+N4pKCG9yCDz6LHNPCwi/GKID5pGGF0=
 github.com/robertkrimen/otto v0.2.1/go.mod h1:UPwtJ1Xu7JrLcZjNWN8orJaM5n5YEtqL//farB5FlRY=
 github.com/rogpeppe/go-internal v1.8.0 h1:FCbCCtXNOY3UtUuHUYaghJg4y7Fd14rXifAYUAtL9R8=
